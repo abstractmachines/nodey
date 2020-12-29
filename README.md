@@ -70,3 +70,7 @@
 
 - package-lock.json
 - to "shrink wrap" package versions and use specific versions
+
+### Peer dependencies and transitive dependencies
+
+- See: https://nodejs.org/es/blog/npm/peer-dependencies/
