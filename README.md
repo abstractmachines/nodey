@@ -22,6 +22,8 @@
 
 ## npm package manager
 
+- see: https://nodejs.dev/learn/an-introduction-to-the-npm-package-manager
+
 ### Versioning w semver (and tagging) w npm
 
 - use [semver](https://semver.org/)
@@ -32,6 +34,10 @@
 ### Running / scripts / npm run, npx, w npm
 
 - `npm run packageNameUnderNodeModules`
+
+### npx package runner
+
+- See: https://nodejs.dev/learn/the-npx-nodejs-package-runner
 - For binaries: `npx binaryName` (from root; bin is in `./node_modules/.bin`)
 
 ### Versions of packages: the caret and the tilde
@@ -44,3 +50,12 @@
 - `engine`: versions/runtime environment
 - `bugs`: repo/location to submit bugs to
 - `license`: usually ISC or MIT
+
+### List packages
+
+- `npm list` (`npm list -g` for globals)
+
+### Lockfile/shrinkwrap
+
+- package-lock.json
+- to "shrink wrap" package versions and use specific versions
