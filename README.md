@@ -12,6 +12,44 @@
 - use CommonJS export styles (`require`, `exports`, `export`, `module.export`)
 - use destructuring of named exports in `require`
 
+## Async programming in NodeJS
+
+- Recall low-level concepts of, "time sharing", interrupts, multi-level feedback queues and schedulers, semaphores, mutexes and locks, and concurrency problems. Those concerns also exist in JS.
+
+## NodeJS Event Loop
+
+NodeJS is single threaded, but it uses a call stack and multiple FIFO "priority queues" to handle async operations.
+
+There are three basic elements to this:
+- Call Stack.
+- Callback Queue (the "ES6 Job Queue", the "microtasks queue").
+- Task Queue (the "Message Queue").
+
+- See: https://nodejs.dev/learn/the-nodejs-event-loop
+- See: https://medium.com/@siddharthac6/javascript-execution-of-synchronous-and-asynchronous-codes-40f3a199e687
+
+- First priority is the LIFO call stack.
+- Once call stack is completed, event loop looks in the ES6 Job Queue (FIFO) for any promises or async functions, 
+and the Event Loop then calls those functions right when the call stack empties out. Some people call this the "Callback Queue."
+- Finally, the Event Loop looks in the Message Queue (FIFO) for any asynchronous operations outside of the Promises/Async await universe, such as setTimeout timers, user-generated events that aren't promises or async await, etc. Some people call this the "Task Queue."
+
+### Event Loop: What's "slow"? -> use async/promises for ...
+
+- File operations
+- Network requests
+- Image processing
+
+### Event Loop: process.nextTick()
+
+- `process.nextTick()` to execute at beginning of next loop
+- You can use to test whether or not code is completed during next event loop
+- You can also use `setImmediate()` or `setTimeout, 0` to execute at END of next event loop.
+
+### Why we care about timers: CPU-bound tasks
+
+> [nodejs.dev](https://nodejs.dev/learn/discover-javascript-timers): "This is especially useful to avoid blocking the CPU on intensive tasks and let other functions be executed while performing a heavy calculation, by queuing functions in the scheduler."
+
+
 ## Getting user input
 
 - use `readline` module for basic stuff
