@@ -24,6 +24,17 @@
 
 - see: https://nodejs.dev/learn/an-introduction-to-the-npm-package-manager
 
+### Troubleshooting npm
+
+> Tips:
+
+- You can always use `npm ci` to start a project with a clean slate if you have a lockfile. [see npm ci docs](https://docs.npmjs.com/cli/v6/commands/npm-ci).
+- To search for a package in node modules try `npm ls | grep packageName`.
+- `npm prune` cleans up your install/removes extraneous packages. [See npm prune docs](https://docs.npmjs.com/cli/v6/commands/npm-prune).
+- Clean cache with `npm cache clean`. See [npm cache docs](https://docs.npmjs.com/cli/v6/commands/npm-cache).
+- Security audit w `npm audit`.
+- "make install generosity" with `npm fund`.
+
 ### Versioning w semver (and tagging) w npm
 
 - use [semver](https://semver.org/)
