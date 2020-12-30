@@ -1,10 +1,16 @@
 /**
- * Let's implement promises using done bool.
+ * Create and Consume Promises
  *
- * Done is, a global constant "done" for Promise "states and fates."
- * @type {boolean}
+ * See: https://nodejs.dev/learn/understanding-javascript-promises
+ */
+
+/**
+ * Creating a Promise
+ *
+ * Let's implement promises using done bool. (Promisifying is more common, but we'll keep it simple.
  */
 let done = true
+// to fail/reject this promise, make this false.
 
 const isItDoneYet = new Promise((resolve, reject) => {
     if (done) {
@@ -20,30 +26,21 @@ const isItDoneYet = new Promise((resolve, reject) => {
         }
         resolve(apiResponse)
     } else {
-        const why = 'Still working on something else'
+        const why = 'fail'
         reject(why)
     }
 })
-// .catch((e) => console.error(e))
-// Adding catch at the end makes it always pending, never fulfilled OR rejected. Why?
-
-console.log(isItDoneYet) // succeeds.
-
 
 /**
- * Done False
+ * Consuming a Promise.
+ *
  */
-let doneAgain = false
+const consumeDoneYet = () => {
+    isItDoneYet
+        .then(
+            (data) => console.log('data: ', data))
+        .catch(
+            (e) => console.error(e))
+}
 
-const isItDoneYetAgain = new Promise((resolve, reject) => {
-    if (doneAgain) {
-        const workDone = 'Here is the thing I built'
-        resolve(workDone)
-    } else {
-        const why = 'Still working on something else'
-        reject(why)
-    }
-})
-
-console.log(isItDoneYetAgain) // fails, and is unhandled.
-
+consumeDoneYet()
