@@ -2,6 +2,8 @@
 
 - See: https://nodejs.dev/learn/understanding-javascript-promises
 
+> TL,DR: Write a function that returns a Promise ... call it ... .then ... .catch.
+
 ## Create a Promise
 
 > Create a function that returns a Promise.
