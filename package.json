@@ -13,9 +13,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "http-server": "node http-and-streams/server-http-basic.js",
-    "http-server:streams": "node http-and-streams/http-streams-bodies.js",
-    "http-server:consume": "node http-and-streams/api-calls-consume-server.js",
+    "http-server": "node http-streams-events/server-http-basic.js",
+    "http-server:streams": "node http-streams-events/http-streams-bodies.js",
+    "http-server:consume": "node http-streams-events/api-calls-consume-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

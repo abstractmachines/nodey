@@ -40,6 +40,9 @@ const get = http.request(optionsGET, res => {
      * Readable streams are a "source from which data is consumed.*
      * Readable Streams can be a response on the client, or a request on the server.
      * This one would of course be considered the client, so, its res object is the Readable Stream.
+     *
+     * We change this readable stream (called req) from "paused" to "flowing" by adding a data event handler per the docs:
+     * https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_two_modes
      */
     res.on('data', d => {
         process.stdout.write(optionsGET.method)

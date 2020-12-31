@@ -1,13 +1,23 @@
-# API calls: client and server
+# Vanilla NodeJS API development: http, events, and Streams
 
-We're implementing API calls here in vanilla NodeJS using the http module and streams.
+We're implementing API calls here in vanilla NodeJS using the http module and streams (and events).
 
-## Streams (see code comments)
+## Streams
+
+> Streams are nothing new.
+
+Streams have been around in operating systems/bash/languages as `pipes` and streams, reading files from file descriptors, etc.
 
 - See: https://nodejs.dev/learn/nodejs-streams
 - To clarify this, read the code comments in [server](http-streams-bodies.js) and [client](api-calls-consume-server.js)
-- All Streams are instance of EventEmitter
-- Recall that EventEmitter is NodeJS's eventing system to create, trigger (`.on`) and consume events.
+
+> Readable Streams : two modes (paused, flowing)
+
+- [All Readable streams begin in paused mode but can be switched to flowing mode](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_two_modes) in one of the following ways:
+     * - Adding a 'data' event handler.
+     * - Other stuff.
+     
+- [IncomingMessage](https://nodejs.org/dist/latest-v8.x/docs/api/http.html#http_class_http_incomingmessage) implements the Readable Stream Interface. 
 
 
 ### Why do we care about Streams? Think about body-parser in Express.

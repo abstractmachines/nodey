@@ -1,11 +1,18 @@
-# Node Modules
+# Working in Node
 
-- [Node](https://github.com/nodejs/node)
-- [Node Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+A guide for understanding the NodeJS ecosystem, writing Node modules, and writing APIs that do not rely on Express or other middleware unnecessarily.
+
+## Node resources
+- [Node Github repo](https://github.com/nodejs/node)
+- [Node Best Practices repo](https://github.com/goldbergyoni/nodebestpractices)
+
+## Node Modules and the ecosystem
 - [Writing Node Modules](#writing-node-modules)
 - [Working with the npm package manager](#npm-package-manager)
-- [Http module: Create and Consume vanilla NodeJS APIs (and Streams)](http-and-streams/README.md)
-- [Streams example](http-and-streams/http-streams-bodies.js)
+
+## API Development in vanilla NodeJS: http, events, and Streams
+- [Http module: Create and Consume vanilla NodeJS APIs (and Streams)](http-streams-events/README.md)
+- [Streams example](http-streams-events/http-streams-bodies.js)
 - [Streams example: fs module w Buffers, files](./async/promisifying-fs-buffers.js)
 
 ## Writing Node Modules
@@ -65,14 +72,11 @@ and the Event Loop then calls those functions right when the call stack empties 
 
 > [nodejs.dev](https://nodejs.dev/learn/discover-javascript-timers): "This is especially useful to avoid blocking the CPU on intensive tasks and let other functions be executed while performing a heavy calculation, by queuing functions in the scheduler."
 
-
 ## Getting user input
 
 - use `readline` module for basic stuff
 - for passwords, and more advanced, use the `inquirer.js` _package_.
 - Seeing as how it's a package, you'll need `npm install`
-
-
 
 ## npm package manager
 
