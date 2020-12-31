@@ -5,16 +5,26 @@
 - [Http module: Create and Consume vanilla NodeJS APIs](./http/API-CREATE-CONSUME.md)
 - [Streams](streams/STREAMS.md)
 - [Streams example: fs module w Buffers, files](./async/promisifying-fs-buffers.js)
-- 
+
+## Writing Node Modules
+
+> What is a Node Module?
+
+>> JavaScript:
 
 - A node module is anything that can be `require()`'d;
 - Usually the module will have a JS file, or a package.json file.
 - ^^ Not all modules are packages. (Only modules with a package.json are packages).
 
-## Writing Node Modules
-
 - use CommonJS export styles (`require`, `exports`, `export`, `module.export`)
 - use destructuring of named exports in `require`
+
+>> C++:
+
+- [v8](https://github.com/v8/v8) is written in C++ :)
+- [Node](https://github.com/nodejs/node) is written in C++, JS ... 
+- [Node Addons](https://nodejs.org/api/addons.html) are written in C++
+
 
 ## Async programming in NodeJS
 
