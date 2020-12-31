@@ -1,6 +1,8 @@
-// Here we consume server-http-basic.js by firing that up first, and then firing up this file.
-// In server-http-basic.js we have basically only one route, no persistence, and nothing going on.
-// Just 200's returned from these basic calls.
+/**
+ * Consuming our vanilla NodeJS API with EventEmitter, Readable Streams and more.
+ *
+ * First ensure you're running the server (file with http.createServer in it), then run this to consume it.
+ */
 
 const http = require('http')
 
@@ -11,8 +13,11 @@ const optionsGET = {
     method: 'GET'
 }
 
+
 const data = JSON.stringify({
-    todo: 'Buy the milk'
+    toDo: 'Buy the milk',
+    toDont: 'Comment code well',
+    toDoToo: 'Be a goose'
 })
 
 const options = {
@@ -31,7 +36,13 @@ const get = http.request(optionsGET, res => {
     console.log('ya request boi here')
     console.log(`statusCode: ${res.statusCode}`)
 
+    /** Readable Stream, res:
+     * Readable streams are a "source from which data is consumed.*
+     * Readable Streams can be a response on the client, or a request on the server.
+     * This one would of course be considered the client, so, its res object is the Readable Stream.
+     */
     res.on('data', d => {
+        process.stdout.write(optionsGET.method)
         process.stdout.write(d)
     })
 })
@@ -47,6 +58,7 @@ const post = http.request(options, res => {
     console.log(`statusCode: ${res.statusCode}`)
 
     res.on('data', d => {
+        process.stdout.write(options.method)
         process.stdout.write(d)
     })
 })

@@ -12,14 +12,11 @@ const port = process.env.PORT || 3000
  *
  * The callback function we pass is the one that's going to be executed upon every request that comes in.
  * Whenever a new request is received, the request event is called, providing two objects:
- * a request (an http.IncomingMessage object) and a response (an http.ServerResponse object).
+ * a request (an http-and-streams.IncomingMessage object) and a response (an http-and-streams.ServerResponse object).
  *
  * request: https://nodejs.org/api/http.html#http_event_request
  */
-
 const serverHttpBasic = http.createServer((req, res) => {
-
-    // req.on()
     res.statusCode = 200
     res.setHeader('Content-Type', 'text/html')
     res.end('henlo\n')

@@ -4,8 +4,8 @@
 - [Node Best Practices](https://github.com/goldbergyoni/nodebestpractices)
 - [Writing Node Modules](#writing-node-modules)
 - [Working with the npm package manager](#npm-package-manager)
-- [Http module: Create and Consume vanilla NodeJS APIs](./http/API-CREATE-CONSUME.md)
-- [Streams](streams/STREAMS.md)
+- [Http module: Create and Consume vanilla NodeJS APIs (and Streams)](http-and-streams/README.md)
+- [Streams example](http-and-streams/http-streams-bodies.js)
 - [Streams example: fs module w Buffers, files](./async/promisifying-fs-buffers.js)
 
 ## Writing Node Modules
