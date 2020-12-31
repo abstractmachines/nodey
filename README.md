@@ -2,6 +2,9 @@
 
 - [Writing Node Modules](#writing-node-modules)
 - [Working with the npm package manager](#npm-package-manager)
+- [Streams](streams/STREAMS.md)
+- [Streams example: fs module w Buffers, files](./async/promisifying-fs-buffers.js)
+- 
 
 - A node module is anything that can be `require()`'d;
 - Usually the module will have a JS file, or a package.json file.
