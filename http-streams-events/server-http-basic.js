@@ -8,7 +8,7 @@ const http = require('http')
 const port = process.env.PORT || 3000
 
 /**
- * This serverHttpBasic responds to all requests at all routes.
+ * This serverHttpBasic responds to all requests at all routes. We aren't currently using `router module`.
  *
  * The callback function we pass is the one that's going to be executed upon every request that comes in.
  * Whenever a new request is received, the request event is called, providing two objects:

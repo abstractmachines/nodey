@@ -10,6 +10,7 @@ const http = require('http')
 const port = process.env.port || 3000
 
 const server = http.createServer((req, res) => {
+    let dataIntake = '' // assuming data is a string...
     /**
      * Readable Streams can be a response on the client, or a request on the server.
      * This one would of course be considered the server, so, its req object is the Readable Stream.
@@ -19,9 +20,11 @@ const server = http.createServer((req, res) => {
      */
     req.on('data', chunk => {
         console.log(`Data chunk available: ${chunk}`)
+        dataIntake += chunk // append the stream's chunk into working memory ...
     })
     req.on('end', () => {
         //end of data
+        console.log('dataIntake: ', dataIntake) // tell the client something happened ... send info/headers back ... etc
     })
 })
 
