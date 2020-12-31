@@ -1,5 +1,7 @@
 # Node Modules
 
+- [Node](https://github.com/nodejs/node)
+- [Node Best Practices](https://github.com/goldbergyoni/nodebestpractices)
 - [Writing Node Modules](#writing-node-modules)
 - [Working with the npm package manager](#npm-package-manager)
 - [Http module: Create and Consume vanilla NodeJS APIs](./http/API-CREATE-CONSUME.md)
