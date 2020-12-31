@@ -19,7 +19,7 @@ const port = process.env.PORT || 3000
 
 const serverHttpBasic = http.createServer((req, res) => {
 
-    req.on()
+    // req.on()
     res.statusCode = 200
     res.setHeader('Content-Type', 'text/html')
     res.end('henlo\n')

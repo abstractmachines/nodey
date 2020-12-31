@@ -2,6 +2,7 @@
 
 - [Writing Node Modules](#writing-node-modules)
 - [Working with the npm package manager](#npm-package-manager)
+- [Http module: Create and Consume vanilla NodeJS APIs](./http/API-CREATE-CONSUME.md)
 - [Streams](streams/STREAMS.md)
 - [Streams example: fs module w Buffers, files](./async/promisifying-fs-buffers.js)
 - 

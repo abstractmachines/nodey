@@ -13,6 +13,8 @@
   },
   "devDependencies": {},
   "scripts": {
+    "http-server": "node ./http/server-http-basic.js",
+    "http-server-consume": "node ./http/server-http-basic-api-calls.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

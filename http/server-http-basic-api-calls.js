@@ -27,6 +27,7 @@ const options = {
 }
 
 const get = http.request(optionsGET, res => {
+    console.log('port: ', optionsGET.port)
     console.log('ya request boi here')
     console.log(`statusCode: ${res.statusCode}`)
 
