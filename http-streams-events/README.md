@@ -11,6 +11,13 @@ Streams have been around in operating systems/bash/languages as `pipes` and stre
 - See: https://nodejs.dev/learn/nodejs-streams
 - To clarify this, read the code comments in [server](http-streams-bodies.js) and [client](api-calls-consume-server.js)
 
+> Types of Streams in NodeJS (half duplex or full)
+
+- `Readable`: half duplex; can pipe `from` but not `to` (can read via pipe but can't write).
+- `Writable streams`: single duplex; can pipe `in/to` but not `from` (can write via pipe, can't read).
+- `Duplex/Transform`: Full-duplex streams.
+- See: https://nodejs.dev/learn/nodejs-streams#different-types-of-streams
+
 > Pipes: pipe a source into a destination.
 
 - See: https://nodejs.dev/learn/nodejs-streams#pipe
