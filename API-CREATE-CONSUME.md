@@ -11,4 +11,5 @@
 > [API, Consume](./server-consume.js)
 
 
-- To extract JSON data sent in response body, you have to use `body-parser`
+- To extract JSON data sent in response body, you have to use `body-parser` (for Express), and a little extra stuff for vanilla NodeJS, including, working directly with Streams!
+
