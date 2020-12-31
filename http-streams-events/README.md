@@ -11,6 +11,10 @@ Streams have been around in operating systems/bash/languages as `pipes` and stre
 - See: https://nodejs.dev/learn/nodejs-streams
 - To clarify this, read the code comments in [server](http-streams-bodies.js) and [client](api-calls-consume-server.js)
 
+> Pipes: pipe a source into a destination.
+
+- See: https://nodejs.dev/learn/nodejs-streams#pipe
+
 > Readable Streams : two modes (paused, flowing)
 
 - [All Readable streams begin in paused mode but can be switched to flowing mode](https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_two_modes) in one of the following ways:
