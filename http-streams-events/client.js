@@ -49,12 +49,16 @@ const get = http.request(optsGet, res => {
             process.stdout.write(d)
         })
     } else {
-        console.error('This is non-robust error handling ...', res.statusCode)
+        get.emit('SIGTERM')
     }
 })
 
-get.on('Yet more non-robust error handling ...', error => {
-    console.error(error)
+get.on('SIGTERM', () => {
+    get.close() // 120 second sleep!
+})
+
+get.on('SIGKILL', () => {
+    process.exit(1) // shut down immediately. See also setImmediate()
 })
 
 get.end()
@@ -67,15 +71,19 @@ const post = http.request(optsPost, res => {
         })
     }
     else {
-        console.error('This is non-robust error handling ...', res.statusCode)
+        post.emit('SIGTERM')
     }
 })
 
-post.on('Yet more non-robust error handling ...', error => {
-    console.error(error)
+post.write(data)
+
+post.on('SIGTERM', () => {
+    post.close() // 120 second sleep!
 })
 
-post.write(data)
+post.on('SIGKILL', () => {
+    process.exit(1) // shut down immediately. See also setImmediate()
+})
 
 post.end()
 

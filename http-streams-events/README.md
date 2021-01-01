@@ -17,7 +17,7 @@
 Streams have been around in operating systems/bash/languages as `pipes` and streams, reading files from file descriptors, etc.
 
 - See: https://nodejs.dev/learn/nodejs-streams
-- To clarify this, read the code comments in [server](http-streams-bodies.js) and [client](api-calls-consume-server.js)
+- To clarify this, read the code comments in [server](http-streams-bodies.js) and [client](client.js)
 
 > Types of Streams in NodeJS (half duplex or full)
 
