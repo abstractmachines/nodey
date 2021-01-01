@@ -1,8 +1,14 @@
 # Vanilla NodeJS API development: http, events, and Streams
 
-We're implementing API calls here in vanilla NodeJS using the http module and streams (and events).
+- We're implementing API calls here in vanilla NodeJS using the http module and streams (and events).
 
-We are focusing on one functionality at a time, so we aren't concerned about routes, extensibility etc...
+- We are focusing on one functionality at a time, so we aren't concerned about routes, extensibility etc...
+
+- Some error handling is used including signals and differentiating between sleep-y `server.close()` and `process.exit` kill.
+
+- [ ] TODO subscribe to a server's socket connection to gracefully shut down only that service w `.server.close()`... see https://stackoverflow.com/questions/14626636/how-do-i-shutdown-a-node-js-https-server-immediately
+
+- [ ] TODO chunking and streaming with larger files ...
 
 ## Streams
 
