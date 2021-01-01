@@ -58,19 +58,24 @@ Streams have been around in operating systems/bash/languages as `pipes` and stre
      * - Adding a 'data' event handler.
      * - Other stuff.
      
-- [IncomingMessage](https://nodejs.org/dist/latest-v8.x/docs/api/http.html#http_class_http_incomingmessage) implements the Readable Stream Interface. 
+- [IncomingMessage](https://nodejs.org/dist/latest-v8.x/docs/api/http.html#http_class_http_incomingmessage) implements the Readable Stream Interface.
+
+### Streams Error Handling: can't use just 'try/catch'!
+
+- See: https://nodejs.org/api/errors.html
+
+> "The use of the 'error' event mechanism is most common for stream-based and event emitter-based APIs, which themselves represent a series of asynchronous operations over time (as opposed to a single operation that may pass or fail) ... Errors generated in this way cannot be intercepted using try…catch as they are thrown after the calling code has already exited."
 
 
-### Why do we care about Streams? Think about body-parser in Express.
+### Chunking and Streaming: Use Cases
 
-> for POST method, you need to send a body in the request, and server needs to read it.
+> Use case: for POST method, you need to send a body in the request, and server needs to read it.
 
 - See: [http-streams.bodies.js](http-streams.js)
 - To extract JSON data sent in response body, you have to use `body-parser` (for Express), and a little extra stuff for vanilla NodeJS, including, working directly with Streams!
-
-### Chunking and Streaming
 
 > Use case: Reading files. Instead of traditional approach (writing entire file into memory and then processing it), you can stream the file, in chunks:
 > * faster! Start sooner.
 > * Less memory intensive
 > * Spatial and temporal complexity hence much better.
+

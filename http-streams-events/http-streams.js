@@ -9,8 +9,7 @@ const http = require('http')
 const port = process.env.port || 3000
 
 /**
- *
- * @type {Server}
+ * http module: createServer
  * @param {req} A Readable Stream.
  * @param {res} A Writeable Stream.
  *  res.write()
@@ -34,7 +33,10 @@ const server = http.createServer((req, res) => {
          * https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_two_modes
          */
         req.on('error', err => {
+            // https://nodejs.org/api/errors.html#errors_errors https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
+            res.statusCode = 500
             console.error(err.stack) // print stack trace
+            res.end()
         }).on('data', chunk => {
             buffer.push(chunk) // append the stream's chunk into working memory ...
         }).on('end', () => {
@@ -44,6 +46,7 @@ const server = http.createServer((req, res) => {
             res.write(buffer)
         })
     } else {
+        res.statusCode = 500
         server.emit('SIGTERM')
     }
 }).listen(`${port}`, () => {
