@@ -10,3 +10,11 @@ const server = http.createServer((req, res) => {
 })
 
 server.listen(3000)
+
+server.on('SIGTERM', () => {
+    server.close() // 120 second sleep!
+})
+
+server.on('SIGKILL', () => {
+    process.exit(1) // shut down immediately. See also setImmediate()
+})

@@ -16,12 +16,28 @@ const port = process.env.PORT || 3000
  *
  * request: https://nodejs.org/api/http.html#http_event_request
  */
-const serverHttpBasic = http.createServer((req, res) => {
-    res.statusCode = 200
-    res.setHeader('Content-Type', 'text/html')
-    res.end('henlo\n')
+
+// just curl host to GET
+const server = http.createServer((req, res) => {
+    const { statusCode } = res
+    const okStatus = (statusCode === 200 || statusCode === 201) && true
+
+    if (okStatus) {
+        res.setHeader('Content-Type', 'text/html')
+        res.end('henlo\n')
+    } else {
+        server.emit('SIGTERM')
+    }
 })
 
-serverHttpBasic.listen(`${port}`, () => {
+server.listen(`${port}`, () => {
     console.log(`server listening at port ${port}`)
+})
+
+server.on('SIGTERM', () => {
+    server.close() // 120 second sleep!
+})
+
+server.on('SIGKILL', () => {
+    process.exit(1) // shut down immediately. See also setImmediate()
 })
