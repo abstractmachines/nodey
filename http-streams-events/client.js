@@ -1,4 +1,4 @@
-/** Lil' NodeJS "client" : Consumes http-streams-bodies.js
+/** Lil' NodeJS "client" : Consumes http-streams.js
  *
  * Consuming our vanilla NodeJS API with EventEmitter, Readable Streams and more.
  */
@@ -34,6 +34,7 @@ const optsPost = {
 }
 
 const get = http.request(optsGet, res => {
+    const { headers } = res
     if (res.statusCode === 200) {
 
         /** Readable Stream, res:
@@ -44,38 +45,48 @@ const get = http.request(optsGet, res => {
          * We change this readable stream (called req) from "paused" to "flowing" by adding a data event handler per the docs:
          * https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_two_modes
          */
-        res.on('data', d => {
-            process.stdout.write(optsGet.method)
-            process.stdout.write(d)
+        res.on('data', chunk => {
+            process.stdout.write(JSON.stringify(headers))
+            process.stdout.write(chunk)
         })
     } else {
-        console.error('This is non-robust error handling ...', res.statusCode)
+        get.emit('SIGTERM')
     }
 })
 
-get.on('Yet more non-robust error handling ...', error => {
-    console.error(error)
+get.on('SIGTERM', () => {
+    get.close() // 120 second sleep!
+})
+
+get.on('SIGKILL', () => {
+    process.exit(1) // shut down immediately. See also setImmediate()
 })
 
 get.end()
 
 const post = http.request(optsPost, res => {
+    const { headers } = res
+
     if (res.statusCode === 200) {
-        res.on('data', d => {
-            process.stdout.write(optsPost.method)
-            process.stdout.write(d)
+        res.on('data', chunk => {
+            process.stdout.write(JSON.stringify(headers))
+            process.stdout.write(chunk)
         })
     }
     else {
-        console.error('This is non-robust error handling ...', res.statusCode)
+        post.emit('SIGTERM')
     }
 })
 
-post.on('Yet more non-robust error handling ...', error => {
-    console.error(error)
+post.write(data)
+
+post.on('SIGTERM', () => {
+    post.close() // 120 second sleep!
 })
 
-post.write(data)
+post.on('SIGKILL', () => {
+    process.exit(1) // shut down immediately. See also setImmediate()
+})
 
 post.end()
 
