@@ -1,8 +1,7 @@
 /**
- * Let's learn about Streams so we can access the request bodies of an incoming request.
- * In Express this is handled with body-parser, but this is vanilla NodeJS where we rely on http-module and streams (and event module).
+ * Let's learn about Streams so we can access the request bodies of an incoming request without Express' body-parser.
+ * In NodeJS, we will rely on http-module and Streams.
  *
- * Once this server is started, it'll print out whatever was sent over in the POST body.
  */
 
 const http = require('http')
@@ -11,11 +10,12 @@ const port = process.env.port || 3000
 
 const server = http.createServer((req, res) => {
     const { statusCode } = res
+    const { headers, method, url } = req
+    const userAgent = headers['user-agent'];
     const okStatus = (statusCode === 200 || statusCode === 201) && true
 
-    if (okStatus) {
-        console.log('Returned ', statusCode)
-        let dataIntake = '' // assuming data is a string...
+    if (okStatus && method === 'POST' || method === 'PUT') {
+        let buffer = []
         /**
          * Readable Streams can be a response on the client, or a request on the server.
          * This one would of course be considered the server, so, its req object is the Readable Stream.
@@ -24,10 +24,11 @@ const server = http.createServer((req, res) => {
          * https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_two_modes
          */
         req.on('data', chunk => {
-            dataIntake += chunk // append the stream's chunk into working memory ...
+            buffer.push(chunk) // append the stream's chunk into working memory ...
         })
         req.on('end', () => {
-            console.log('dataIntake: ', dataIntake) // tell the client something happened ... send info/headers back ... etc
+            buffer = Buffer.concat(buffer).toString()
+            console.log('buffer: ', buffer) // tell the client something happened ... send info/headers back ... etc
         })
     } else {
         server.emit('SIGTERM')

@@ -12,7 +12,7 @@ A guide for understanding the NodeJS ecosystem, writing Node modules, and writin
 
 ## API Development in vanilla NodeJS: http, events, and Streams
 - [Http module: Create and Consume vanilla NodeJS APIs (and Streams)](http-streams-events/README.md)
-- [Streams example](http-streams-events/http-streams-bodies.js)
+- [Streams example](http-streams-events/http-streams.js)
 - [Streams example: fs module w Buffers, files](./async/promisifying-fs-buffers.js)
 
 ## Writing Node Modules

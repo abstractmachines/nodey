@@ -1,4 +1,4 @@
-/** Lil' NodeJS "client" : Consumes http-streams-bodies.js
+/** Lil' NodeJS "client" : Consumes http-streams.js
  *
  * Consuming our vanilla NodeJS API with EventEmitter, Readable Streams and more.
  */

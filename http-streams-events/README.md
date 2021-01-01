@@ -1,6 +1,18 @@
 # Vanilla NodeJS API development: http, events, and Streams
 
-- We're implementing API calls here in vanilla NodeJS using the http module and streams (and events).
+> What:
+
+- API in in vanilla NodeJS using the http module and streams (and events).
+
+> Why:
+
+- Learn NodeJS without a framework
+
+> Sources:
+- https://nodejs.dev/learn/nodejs-streams
+- https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
+
+> Tactics
 
 - We are focusing on one functionality at a time, so we aren't concerned about routes, extensibility etc...
 
@@ -10,14 +22,16 @@
 
 - [ ] TODO chunking and streaming with larger files ...
 
-## Streams
+## Chunking, Streaming, Pipes
+
+### Streams
 
 > Streams are nothing new.
 
 Streams have been around in operating systems/bash/languages as `pipes` and streams, reading files from file descriptors, etc.
 
 - See: https://nodejs.dev/learn/nodejs-streams
-- To clarify this, read the code comments in [server](http-streams-bodies.js) and [client](client.js)
+- To clarify this, read the code comments in [server](http-streams.js) and [client](client.js)
 
 > Types of Streams in NodeJS (half duplex or full)
 
@@ -25,6 +39,14 @@ Streams have been around in operating systems/bash/languages as `pipes` and stre
 - `Writable streams`: single duplex; can pipe `in/to` but not `from` (can write via pipe, can't read).
 - `Duplex/Transform`: Full-duplex streams.
 - See: https://nodejs.dev/learn/nodejs-streams#different-types-of-streams
+
+### Chunks (Buffers)
+
+- The `chunk` emitted in each `data event`, is a `Buffer` ([Buffers API](https://nodejs.org/api/buffer.html))
+- Concatenate the incoming Buffer and return results (probably could use a reducer here)
+- You can also use npm's [concat-stream](https://www.npmjs.com/package/concat-stream) or [body](https://www.npmjs.com/package/body)
+
+### Pipes
 
 > Pipes: pipe a source into a destination.
 
@@ -43,7 +65,7 @@ Streams have been around in operating systems/bash/languages as `pipes` and stre
 
 > for POST method, you need to send a body in the request, and server needs to read it.
 
-- See: [http-streams.bodies.js](http-streams-bodies.js)
+- See: [http-streams.bodies.js](http-streams.js)
 - To extract JSON data sent in response body, you have to use `body-parser` (for Express), and a little extra stuff for vanilla NodeJS, including, working directly with Streams!
 
 ### Chunking and Streaming
