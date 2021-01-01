@@ -2,6 +2,8 @@
 
 We're implementing API calls here in vanilla NodeJS using the http module and streams (and events).
 
+We are focusing on one functionality at a time, so we aren't concerned about routes, extensibility etc...
+
 ## Streams
 
 > Streams are nothing new.
