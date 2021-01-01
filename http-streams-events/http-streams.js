@@ -8,11 +8,21 @@ const http = require('http')
 
 const port = process.env.port || 3000
 
+/**
+ *
+ * @type {Server}
+ * @param {req} A Readable Stream.
+ * @param {res} A Writeable Stream.
+ *  res.write()
+ *  res.end()
+ */
 const server = http.createServer((req, res) => {
     const { statusCode } = res
     const { headers, method, url } = req
     const userAgent = headers['user-agent'];
     const okStatus = (statusCode === 200 || statusCode === 201) && true
+
+    res.setHeader('Content-Type', 'application/json')
 
     if (okStatus && method === 'POST' || method === 'PUT') {
         let buffer = []
@@ -23,19 +33,20 @@ const server = http.createServer((req, res) => {
          * We change this readable stream (called req) from "paused" to "flowing" by adding a data event handler per the docs:
          * https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_two_modes
          */
-        req.on('data', chunk => {
+        req.on('error', err => {
+            console.error(err.stack) // print stack trace
+        }).on('data', chunk => {
             buffer.push(chunk) // append the stream's chunk into working memory ...
-        })
-        req.on('end', () => {
+        }).on('end', () => {
             buffer = Buffer.concat(buffer).toString()
             console.log('buffer: ', buffer) // tell the client something happened ... send info/headers back ... etc
+            res.setHeader('X-Powered-By', 'bacon')
+            res.write(buffer)
         })
     } else {
         server.emit('SIGTERM')
     }
-})
-
-server.listen(`${port}`, () => {
+}).listen(`${port}`, () => {
     console.log(`server listening at port ${port}`)
 })
 

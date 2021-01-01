@@ -34,6 +34,7 @@ const optsPost = {
 }
 
 const get = http.request(optsGet, res => {
+    const { headers } = res
     if (res.statusCode === 200) {
 
         /** Readable Stream, res:
@@ -44,9 +45,9 @@ const get = http.request(optsGet, res => {
          * We change this readable stream (called req) from "paused" to "flowing" by adding a data event handler per the docs:
          * https://nodejs.org/dist/latest-v8.x/docs/api/stream.html#stream_two_modes
          */
-        res.on('data', d => {
-            process.stdout.write(optsGet.method)
-            process.stdout.write(d)
+        res.on('data', chunk => {
+            process.stdout.write(JSON.stringify(headers))
+            process.stdout.write(chunk)
         })
     } else {
         get.emit('SIGTERM')
@@ -64,10 +65,12 @@ get.on('SIGKILL', () => {
 get.end()
 
 const post = http.request(optsPost, res => {
+    const { headers } = res
+
     if (res.statusCode === 200) {
-        res.on('data', d => {
-            process.stdout.write(optsPost.method)
-            process.stdout.write(d)
+        res.on('data', chunk => {
+            process.stdout.write(JSON.stringify(headers))
+            process.stdout.write(chunk)
         })
     }
     else {
